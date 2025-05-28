@@ -1,0 +1,49 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Заказ оформлен</title>
+    <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,200,300,700,600' rel='stylesheet'
+          type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:400,700,300' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Raleway:400,100' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" href='{% static "css/bootstrap.min.css" %}'>
+
+    <link rel="stylesheet" href='{% static "css/font-awesome.min.css" %}'>
+
+    <link rel="stylesheet" href='{% static "css/responsive.css" %}'>
+</head>
+<body>
+<div class="container">
+    <div class="product-big-title-area">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="product-bit-title text-center">
+                    <h2 style="color: #000000;">Ваш заказ успешно оформлен!</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="promo-area">
+        <center>
+            <div class="alert alert-success" role="alert">
+                <p>Спасибо за ваш заказ, {{ order.user.username }}!</p>
+                <p>Номер вашего заказа: <strong>{{ order.id }}</strong></p>
+                <p>Детали заказа:</p>
+                <ul>
+                    {% for item in order.items.all %}
+                    <li>{{ item.product.nombre }} - {{ item.quantity }} шт. по ${{ item.price }}</li>
+                    {% endfor %}
+                </ul>
+                <a href="{% url 'mainPage' %}" class="btn btn-primary">Вернуться на главную</a>
+            </div>
+        </center>
+    </div>
+</div>
+</body>
+</html>

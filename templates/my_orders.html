@@ -1,0 +1,183 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мои покупки</title>
+    <link rel="icon" href='{% static  "img/iconLog.png" %}'>
+
+    <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,200,300,700,600' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:400,700,300' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Raleway:400,100' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" href='{% static  "css/bootstrap.min.css" %}'>
+
+    <link rel="stylesheet" href='{% static "css/font-awesome.min.css" %}'>
+
+    <link rel="stylesheet" href='{% static "css/owl.carousel.css" %}'>
+    <link rel="stylesheet" href='{% static "css/style.css" %}'>
+    <link rel="stylesheet" href='{% static "css/responsive.css" %}'>
+</head>
+
+<body>
+
+<div class="header-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="user-menu">
+                    <ul>
+                        <li><a href="{% url 'mainPage' %}"><i class="fa fa-user"></i>Главная</a></li>
+                        <li><a href=" {% url 'my_orders' %} "><i class="fa fa-list-alt"></i> Мои покупки</a></li>
+                        <li><a href=" {% url 'cart' %} "><i class="fa fa-shopping-cart"></i> Моя корзина</a></li>
+
+                        {% if user.username %}
+                        <li class="dropdown">
+                                <span style="color: #5ACA76;" class="dropdown-toggle" data-toggle="dropdown"><i
+                                        class=" fa fa-user " data-toggle="dropdown"></i>
+                                    {{user.username | upper }}
+                                    <b class="caret"></b>
+                                </span>
+                            <ul class="dropdown-menu">
+                                <li><a href="{% url 'logout' %}">Выйти</a></li>
+                                {% if user.username == 'admin' %}
+                                <li><a href="{% url 'addProduct' %}">Добавить товар</a></li>
+                                <li><a href="{% url 'productList' %}">Список товаров</a></li>
+                                {% endif%}
+
+                            </ul>
+
+                        </li>
+                        {% else %}
+                        <li><a href="{% url 'login' %}"><i class="fa fa-user"></i> Войти</a></li>
+                        <li><a href="{% url 'register' %}"><i class="fa fa-user"></i> Зарегистрироваться</a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="site-branding-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+            </div>
+
+            <div class="col-sm-6">
+                <div class="shopping-item">
+                    <a href=" {% url 'cart' %} ">Корзина - <span class="cart-amunt"></span> <i
+                            class="fa fa-shopping-cart"></i> <span class="product-count">{{total_items}}</span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="product-big-title-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="product-bit-title text-center">
+                    <h2 style="color: #000000;"><strong>Мои покупки</strong></h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="single-product-area">
+    <div class="zigzag-bottom"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="product-content-right">
+                    {% if orders %}
+                    {% for order in orders %}
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">
+                                Заказ №{{ order.id }} - Дата: {{ order.created_at|date:"d M Y H:i" }}
+                            </h3>
+                        </div>
+                        <div class="panel-body">
+                            <h4>Товары в заказе:</h4>
+                            <table class="table table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Название</th>
+                                    <th>Цена за ед.</th>
+                                    <th>Количество</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for detail in order.details.all %}
+                                <tr>
+                                    <td>{{ detail.product_name }}</td>
+                                    <td>${{ detail.unit_price }}</td>
+                                    <td>{{ detail.quantity }}</td>
+                                </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <br>
+                    {% endfor %}
+                        {% if orders|length == 0%}
+                        <div class="alert alert-info text-center">
+                            У вас пока нет покупок. <a href="{% url 'mainPage' %}">Начните покупки сейчас!</a>
+                        </div>
+                        {% endif %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br>
+<div class="footer-top-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 col-sm-6">
+                <div class="footer-about-us">
+                    <h2>Магазин</h2>
+                    <p> Это компания по доставке различных товаров, обладающая гибкостью при оформлении заказа.</p>
+                    <div class="footer-social">
+                        <a href=" {% url 'mainPage' %}" target="_blank"><i class="fa fa-facebook"></i></a>
+                        <a href=" {% url 'mainPage' %}" target="_blank"><i class="fa fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3 col-sm-6">
+                <div class="footer-menu">
+                    <h2 class="footer-wid-title">Разделы</h2>
+                    <ul>
+                        <li><a href=" {% url 'mainPage' %} ">Главная</a></li>
+                        <li><a href=" {% url 'contact' %} ">Контакты</a></li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src='{% static "js/owl.carousel.min.js" %}'></script>
+<script src='{% static "js/jquery.sticky.js" %}'></script>
+<script src='{% static "js/jquery.easing.1.3.min.js" %}'></script>
+<script src='{% static "js/main.js" %}'></script>
+<script type="text/javascript" src='{% static "js/bxslider.min.js" %}'></script>
+<script type="text/javascript" src='{% static "js/script.slider.js" %}'></script>
+
+</body>
+
+</html>

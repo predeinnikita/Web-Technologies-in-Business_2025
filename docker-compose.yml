@@ -1,0 +1,19 @@
+version: '3.8'
+services: 
+  backend:
+    image:  python:3.8  
+    build:
+      context: .
+      dockerfile: Dockerfile 
+    ports:
+      - 80:80 
+    volumes:
+      - .:/app
+    depends_on:
+      - sqlite3 
+  sqlite3:
+    image:   nouchka/sqlite3:latest
+    stdin_open: true
+    tty: true
+    volumes:
+      - "./db/:/root/db/"

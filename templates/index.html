@@ -1,0 +1,286 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Магазин</title>
+    <link rel="icon" href='{% static  "img/iconLog.png" %}'>
+
+    <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,200,300,700,600' rel='stylesheet'
+          type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:400,700,300' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Raleway:400,100' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" href='{% static  "css/bootstrap.min.css" %}'>
+
+    <link rel="stylesheet" href='{% static "css/font-awesome.min.css" %}'>
+
+    <link rel="stylesheet" href='{% static "css/owl.carousel.css" %}'>
+    <link rel="stylesheet" href='{% static "css/style.css" %}'>
+    <link rel="stylesheet" href='{% static "css/responsive.css" %}'>
+
+
+</head>
+
+<body>
+
+<div class="header-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="user-menu">
+                    <ul>
+                        <li><a href="{% url 'mainPage' %}"><i class="fa fa-user"></i>Главная</a></li>
+                        <li><a href=" {% url 'my_orders' %} "><i class="fa fa-shopping-cart"></i> Мои покупки</a></li>
+                        <li><a href=" {% url 'cart' %} "><i class="fa fa-shopping-cart"></i> Моя корзина</a></li>
+
+                        {% if user.username %}
+                        <li class="dropdown">
+                                <span style="color: #5ACA76;" class="dropdown-toggle" data-toggle="dropdown"><i
+                                        class=" fa fa-user " data-toggle="dropdown"></i>
+                                    {{user.username | upper }}
+                                    <b class="caret"></b>
+                                </span>
+                            <ul class="dropdown-menu">
+                                <li><a href="{% url 'logout' %}">Выйти</a></li>
+                                {% if user.username == 'admin' %}
+                                <li><a href="{% url 'addProduct' %}">Зарегистрировать продукт</a></li>
+                                <li><a href="{% url 'productList' %}">Список продуктов</a></li>
+                                {% endif%}
+
+                            </ul>
+
+                        </li>
+                        {% else %}
+                        <li><a href="{% url 'login' %}"><i class="fa fa-user"></i> Войти</a></li>
+                        <li><a href="{% url 'register' %}"><i class="fa fa-user"></i> Зарегистрироваться</a></li>
+                        {% endif%}
+
+
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> <div class="site-branding-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+            </div>
+
+            <div class="col-sm-6">
+                <div class="shopping-item">
+                    <a href=" {% url 'cart' %} ">Корзина - <span class="cart-amunt">$ {{total_cart}}</span> <i
+                            class="fa fa-shopping-cart"></i> <span class="product-count">{{total_items}}</span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> <div class="mainmenu-area">
+    <div class="container">
+        <div class="row">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Переключить навигацию</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href=" {% url 'mainPage' %} ">Главная</a></li>
+                    <li><a href=" {% url 'contact' %} ">Контакты</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div> <div class="slider-area">
+    <div class="block-slider block-slider4">
+        <ul class="" id="bxslider-home4">
+            <li>
+                <img src='{% static "img/h4-slide10.png" %}' alt="Слайд">
+                <div class="caption-group">
+                    <h2 class="caption title">
+                        ВАША ДОСТАВКА <span class="primary"> <strong></strong></span>
+                    </h2>
+                    <h2 class="caption title">
+                        <span class="primary"> <strong>ЭТО НАШ ПРИОРИТЕТ</strong></span>
+                    </h2>
+                </div>
+            </li>
+            <li><img src='{% static "img/h4-slide11.png" %}' alt="Слайд">
+                <div class="caption-group">
+                    <center>
+                        <h2 class="caption title">
+                            СДЕЛАЙТЕ СВОЙ ЗАКАЗ
+                        </h2>
+                        <h2 class="caption title">
+                            <span class="primary">20% <strong>СКИДКА</strong></span>
+                        </h2>
+                        <h4 class="caption subtitle">ВСЕ, ЧТО ВАМ НУЖНО 24 ЧАСА В СУТКИ.</h4>
+                    </center>
+                </div>
+            </li>
+            <li><img src='{% static "img/h4-slide12.png" %}' alt="Слайд">
+                <div class="caption-group">
+                    <h2 class="caption title">
+                        БЫСТРАЯ <span class="primary"> <strong>ДОСТАВКА</strong></span>
+                    </h2>
+                    <h2 class="caption title">
+                        <span class="primary"> <strong>ВСЯ ЕДА, КОТОРУЮ ВЫ МОЖЕТЕ</strong></span>
+                    </h2>
+                </div>
+            </li>
+            <li><img src='{% static "img/h4-slide15.png" %}' alt="Слайд">
+                <div class="caption-group">
+
+                    <h2 class="caption title">
+                        НО ЗАКАЖИ <span class="primary"> <strong> И ЗАКАЖИ</strong></span>
+                    </h2>
+                    <h2 class="caption title">
+                        <span class="primary"> <strong>ПРЯМО СЕЙЧАС!</strong></span>
+                    </h2>
+                    <h4 class="caption subtitle">ПОТОМУ ЧТО ЕСЛИ ТЫ НЕ ЗАКАЖЕШЬ, ТЫ ОСТАНЕШЬСЯ С ЖЕЛАНИЕМ.</h4>
+
+                </div>
+            </li>
+
+
+        </ul>
+    </div>
+</div> <div class="promo-area">
+    <div class="zigzag-bottom"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 col-sm-6">
+                <div class="single-promo promo1">
+                    <i class="fa fa-refresh"></i>
+                    <p>Качественная продукция</p>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="single-promo promo2">
+                    <i class="fa fa-truck"></i>
+                    <p>Быстрая доставка</p>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="single-promo promo3">
+                    <i class="fa fa-lock"></i>
+                    <p>Безопасные платежи</p>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="single-promo promo4">
+                    <i class="fa fa-gift"></i>
+                    <p>Новые продукты</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> <div class="single-prssaoduct-area">
+    <div class="container">
+        <div class="row">
+            <div class="latest-product">
+                <br><br><br><br><br>
+                <h2 class="section-title">ПРОДУКТЫ</h2>
+            </div>
+
+            {% for product in products %}
+            <div class="col-md-3 col-sm-6">
+                <div class="single-shop-product">
+                    <center>
+                        <div class="product-upper">
+                            <a class="btn add_to_cart_button  btn-block" href=" {% url 'mainPage' %}  ">
+                                <strong>
+                                    {{product.name | upper}}
+                                </strong>
+                            </a>
+                        </div>
+                        <div class="single-product">
+                            <div class="product-f-image">
+                                {% if product.image.url != null %}
+                                <img src="{{product.image.url}}" width="260px" height="300px" alt="">
+                                {% else %}
+                                <img src='{% static  "img/img_no_disponible.png" %}' width="260px" height="300px"
+                                     alt="">
+                                {% endif %}
+                                <div class="product-hover">
+                                    {% if user.username %}
+                                    <a href="{% url 'Add' product.id %}" class="add-to-cart-link"><i
+                                            class="fa fa-shopping-cart"></i>Добавить в корзину</a>
+                                    {% else %}
+                                    <a href="{% url 'login' %}" class="add-to-cart-link">
+                                        <i class="fa fa-shopping-cart"></i>Добавить в корзину</a>
+                                    {% endif %}
+
+                                    <a href=" {% url 'details' product.id%}" class="view-details-link"><i
+                                            class="fa fa-link"></i> Посмотреть детали</a>
+                                </div>
+                            </div>
+                            <div class="product-carousel-price">
+                                <ins> <strong>$ {{product.price}}</strong></ins>
+                            </div>
+                            <div class="product-option-shop">
+                                <h5>{{product.description}}</h5>
+                            </div>
+
+                        </div>
+                    </center>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div><div class="maincontent-area">
+    <div class="zigzag-bottom"></div>
+</div> <div class="footer-top-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 col-sm-6">
+                <div class="footer-about-us">
+                    <h2>Магазин</span></h2>
+                    <p> Это компания по доставке различных товаров, обладающая
+                        гибкостью при заказе.</p>
+                    <div class="footer-social">
+                        <a href=" {% url 'mainPage' %}" target="_blank"><i class="fa fa-facebook"></i></a>
+                        <a href=" {% url 'mainPage' %}" target="_blank"><i class="fa fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3 col-sm-6">
+                <div class="footer-menu">
+                    <h2 class="footer-wid-title">Разделы</h2>
+                    <ul>
+                        <li><a href=" {% url 'mainPage' %} ">Главная</a></li>
+                        <li><a href=" {% url 'contact' %} ">Контакты</a></li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery.min.js"></script>
+
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+<script src='{% static "js/owl.carousel.min.js" %}'></script>
+<script src='{% static "js/jquery.sticky.js" %}'></script>
+
+<script src='{% static "js/jquery.easing.1.3.min.js" %}'></script>
+
+<script src='{% static "js/main.js" %}'></script>
+
+<script type="text/javascript" src='{% static "js/bxslider.min.js" %}'></script>
+<script type="text/javascript" src='{% static "js/script.slider.js" %}'></script>
+
+</body>
+
+</html>
