@@ -39,7 +39,6 @@
                         <li><a href=" {% url 'my_orders' %} "><i class="fa fa-shopping-cart"></i> Мои покупки</a></li>
                         <li><a href=" {% url 'cart' %} "><i class="fa fa-shopping-cart"></i> Моя корзина</a></li>
 
-                        
                         {% if user.username %}
                         <li class="dropdown">
                                 <span style="color: #5ACA76;" class="dropdown-toggle" data-toggle="dropdown"><i
@@ -50,8 +49,8 @@
                             <ul class="dropdown-menu">
                                 <li><a href="{% url 'logout' %}">Выйти</a></li>
                                 {% if user.username == 'admin' %}
-                                <li><a href="{% url 'addProduct' %}">Добавить товар</a></li>
-                                <li><a href="{% url 'productList' %}">Список товаров</a></li>
+                                <li><a href="{% url 'addProduct' %}">Зарегистрировать продукт</a></li>
+                                <li><a href="{% url 'productList' %}">Список продуктов</a></li>
                                 {% endif%}
 
                             </ul>
@@ -60,8 +59,7 @@
                         {% else %}
                         <li><a href="{% url 'login' %}"><i class="fa fa-user"></i> Войти</a></li>
                         <li><a href="{% url 'register' %}"><i class="fa fa-user"></i> Зарегистрироваться</a></li>
-                        {% endif %}
-
+                        {% endif%}
                     </ul>
                 </div>
             </div>
@@ -69,103 +67,103 @@
     </div>
 </div>
 
-    <div class="site-branding-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-6">
-                </div>
+<!--<div class="site-branding-area">-->
+<!--        <div class="container">-->
+<!--            <div class="row">-->
+<!--                <div class="col-sm-6">-->
+<!--                </div>-->
 
-                <div class="col-sm-6">
-                    <div class="shopping-item">
-                        <a href=" {% url 'cart' %} ">Корзина - <span class="cart-amщunt">$ {{total_cart}}</span> <i
-                                class="fa fa-shopping-cart"></i> <span class="product-count">{{total_items}}</span></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> <!-- End site branding area -->
+<!--                <div class="col-sm-6">-->
+<!--                    <div class="shopping-item">-->
+<!--                        <a href=" {% url 'cart' %} ">Корзина - <span class="cart-amщunt">$ {{total_cart}}</span> <i-->
+<!--                                class="fa fa-shopping-cart"></i> <span class="product-count">{{total_items}}</span></a>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
 
-    <div class="product-big-title-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="product-bit-title text-center">
-                        <h2 style="color: #000000;"><strong>Корзина</strong></h2>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+<!--<div class="product-big-title-area">-->
+<!--        <div class="container">-->
+<!--            <div class="row">-->
+<!--                <div class="col-md-12">-->
+<!--                    <div class="product-bit-title text-center">-->
+<!--                        <h2 style="color: #000000;"><strong>Корзина</strong></h2>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--<div class="promo-area">-->
+<!--        <center>-->
+<!--            <div class="alert alert-primary" role="alert">-->
+<!--                <section class="cb" id="cb" style="max-width: 1000px; background-color: rgb(255, 255, 255); ">-->
+
+<!--                    <table class="table table-bordered  " style=" float: center;">-->
+<!--                        <thead>-->
+<!--                        <tr style="color: rgb(0, 0, 0);">-->
+<!--                            <th scope="col" class="text-center">ID</th>-->
+<!--                            <th scope="col" class="text-center">НАЗВАНИЕ</th>-->
+<!--                            <th scope="col" class="text-center">ЦЕНА</th>-->
+<!--                            <th scope="col" class="text-center">КОЛИЧЕСТВО</th>-->
+<!--                        </tr>-->
+<!--                        </thead>-->
+<!--                        <tbody>-->
+<!--                        {% if request.session.cart.items %}-->
+<!--                        {% for key, value in request.session.cart.items %}-->
+<!--                        <tr class="bg-primary"-->
+<!--                            style="color: rgb(0, 0, 0); text-align: center; background-color: #ffffff;">-->
+<!--                            <td>{{value.product_id}}</td>-->
+<!--                            <td><strong>{{value.name}}</strong></td>-->
+<!--                            <td>{{value.price}}</td>-->
+<!--                            <td class="table-active table-primary">{{value.quantity}}-->
+<!--                                <a href="{% url 'Sum' value.product_id %}" style="background-color: #333; border-color: #333 ;" class="badge btn btn-success badge-dark">+</a>-->
+<!--                                <a href="{% url 'Sub' value.product_id %}" style="background-color: #333; border-color: #333" class="badge btn btn-danger badge-dark">-</a>-->
+<!--                            </td>-->
+<!--                        </tr>-->
+<!--                        {% endfor %}-->
+<!--                        {% else %}-->
+<!--                        <tr>-->
+<!--                            <td style="background-color: #ffffff; " colspan="4"> {# colspan изменено на 4 #}-->
+<!--                                <div style="color: rgb(0, 0, 0);background-color: #ffffff; border-color: #ffffff" class="alert alert-danger text-center"> Нет товаров в корзине </div>-->
+<!--                            </td>-->
+<!--                        </tr>-->
+<!--                        {% endif %}-->
+<!--                        <tr style="color:rgb(0, 0, 0); background-color: #ffffff;">-->
+<!--                            <th colspan="2" scope="row" class="text-center">Итого:</th>-->
+<!--                            <td colspan="1" class="text-center"><strong>$ {{total_cart}}</strong></td>-->
+<!--                            <td class="text-center"></td>-->
+<!--                        </tr>-->
+<!--                        </tbody>-->
+<!--                    </table>-->
+<!--                </section>-->
+<!--                <hr>-->
+
+<!--                <div style="max-height: 100px; padding: 10px;">-->
+<!--                    <section class="cb" id="cb" style="max-width: 1000px; max-height: 50px; ">-->
+
+<!--                        <a href="{% url 'CLS' %}" class="btn btn-danger btn-block" style="float: center;">Очистить</a>-->
+
+<!--                        <a href=" {% url 'mainPage' %}" style="float: center;">-->
+<!--                            <button style="float: center;" type="button" class="btn btn-success btn-block">Продолжить покупки</button>-->
+<!--                        </a>-->
+
+<!--                        {% if request.session.cart.items %}-->
+<!--                        <a href=" {% url 'checkout' %}" style="float: center;">-->
+<!--                            <button style="float: center;" type="button" class="btn btn-primary btn-block">-->
+<!--                                <i class="fa fa-shopping-bag"></i> Перейти к оформлению-->
+<!--                            </button>-->
+<!--                        </a>-->
+<!--                        {% endif %}-->
+
+<!--                    </section>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </center>-->
+<!--    </div>-->
 
 
-
-    <div class="promo-area">
-        <center>
-            <div class="alert alert-primary" role="alert">
-                <section class="cb" id="cb" style="max-width: 1000px; background-color: rgb(255, 255, 255); ">
-
-                    <table class="table table-bordered  " style=" float: center;">
-                        <thead>
-                        <tr style="color: rgb(0, 0, 0);">
-                            <th scope="col" class="text-center">ID</th>
-                            <th scope="col" class="text-center">НАЗВАНИЕ</th>
-                            <th scope="col" class="text-center">ЦЕНА</th>
-                            <th scope="col" class="text-center">КОЛИЧЕСТВО</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {% if request.session.cart.items %}
-                        {% for key, value in request.session.cart.items %}
-                        <tr class="bg-primary"
-                            style="color: rgb(0, 0, 0); text-align: center; background-color: #ffffff;">
-                            <td>{{value.product_id}}</td>
-                            <td><strong>{{value.name}}</strong></td>
-                            <td>{{value.price}}</td>
-                            <td class="table-active table-primary">{{value.quantity}}
-                                <a href="{% url 'Sum' value.product_id %}" style="background-color: #333; border-color: #333 ;" class="badge btn btn-success badge-dark">+</a>
-                                <a href="{% url 'Sub' value.product_id %}" style="background-color: #333; border-color: #333" class="badge btn btn-danger badge-dark">-</a>
-                            </td>
-                        </tr>
-                        {% endfor %}
-                        {% else %}
-                        <tr>
-                            <td style="background-color: #ffffff; " colspan="4"> {# colspan изменено на 4 #}
-                                <div style="color: rgb(0, 0, 0);background-color: #ffffff; border-color: #ffffff" class="alert alert-danger text-center"> Нет товаров в корзине </div>
-                            </td>
-                        </tr>
-                        {% endif %}
-                        <tr style="color:rgb(0, 0, 0); background-color: #ffffff;">
-                            <th colspan="2" scope="row" class="text-center">Итого:</th>
-                            <td colspan="1" class="text-center"><strong>$ {{total_cart}}</strong></td>
-                            <td class="text-center"></td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </section>
-                <hr>
-
-                <div style="max-height: 100px; padding: 10px;">
-                    <section class="cb" id="cb" style="max-width: 1000px; max-height: 50px; ">
-
-                        <a href="{% url 'CLS' %}" class="btn btn-danger btn-block" style="float: center;">Очистить</a>
-
-                        <a href=" {% url 'mainPage' %}" style="float: center;">
-                            <button style="float: center;" type="button" class="btn btn-success btn-block">Продолжить покупки</button>
-                        </a>
-
-                        {% if request.session.cart.items %}
-                        <a href=" {% url 'checkout' %}" style="float: center;">
-                            <button style="float: center;" type="button" class="btn btn-primary btn-block">
-                                <i class="fa fa-shopping-bag"></i> Перейти к оформлению
-                            </button>
-                        </a>
-                        {% endif %}
-
-                    </section>
-                </div>
-            </div>
-        </center>
-    </div>
     <script src="https://code.jquery.com/jquery.min.js"></script>
 
     <!-- Bootstrap JS form CDN -->

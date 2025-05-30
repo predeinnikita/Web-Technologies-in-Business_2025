@@ -33,34 +33,40 @@
             <div class="col-md-8">
                 <div class="user-menu">
                     <ul>
-                        <li><a href="{% url 'mainPage' %}"><i class="fa fa-user"></i> Главная</a></li>
+                        <li><a href="{% url 'mainPage' %}"><i class="fa fa-user"></i>Главная</a></li>
+                        <li><a href=" {% url 'my_orders' %} "><i class="fa fa-shopping-cart"></i> Мои покупки</a></li>
                         <li><a href=" {% url 'cart' %} "><i class="fa fa-shopping-cart"></i> Моя корзина</a></li>
 
                         {% if user.username %}
                         <li class="dropdown">
-                                    <span style="color: #5ACA76;" class="dropdown-toggle" data-toggle="dropdown">
-                                        <i class="fa fa-user" data-toggle="dropdown"></i>
-                                        {{user.username | upper }}
-                                        <b class="caret"></b>
-                                    </span>
+                                <span style="color: #5ACA76;" class="dropdown-toggle" data-toggle="dropdown"><i
+                                        class=" fa fa-user " data-toggle="dropdown"></i>
+                                    {{user.username | upper }}
+                                    <b class="caret"></b>
+                                </span>
                             <ul class="dropdown-menu">
                                 <li><a href="{% url 'logout' %}">Выйти</a></li>
                                 {% if user.username == 'admin' %}
-                                <li><a href="{% url 'addProduct' %}">Зарегистрировать товар</a></li>
-                                <li><a href="{% url 'productList' %}">Список товаров</a></li>
-                                {% endif %}
+                                <li><a href="{% url 'addProduct' %}">Зарегистрировать продукт</a></li>
+                                <li><a href="{% url 'productList' %}">Список продуктов</a></li>
+                                {% endif%}
+
                             </ul>
+
                         </li>
                         {% else %}
                         <li><a href="{% url 'login' %}"><i class="fa fa-user"></i> Войти</a></li>
                         <li><a href="{% url 'register' %}"><i class="fa fa-user"></i> Зарегистрироваться</a></li>
-                        {% endif %}
+                        {% endif%}
+
+
+
                     </ul>
                 </div>
             </div>
         </div>
     </div>
-</div> <!-- Конец header -->
+</div>
 
 <div class="site-branding-area">
     <div class="container">
@@ -75,7 +81,7 @@
             </div>
         </div>
     </div>
-</div> <!-- Конец брендинга -->
+</div>
 
 <div class="mainmenu-area">
     <div class="container">
@@ -96,7 +102,7 @@
             </div>
         </div>
     </div>
-</div> <!-- Конец меню -->
+</div>
 
 <div class="product-big-title-area">
     <div class="container">
@@ -135,7 +141,7 @@
                 </div>
             </div>
         </div>
-    </div> <!-- Конец promo -->
+    </div>
 </center>
 
 <div class="footer-top-area">
@@ -163,7 +169,7 @@
             </div>
         </div>
     </div>
-</div> <!-- Конец footer top -->
+</div>
 
 <!-- Скрипты -->
 <script src="https://code.jquery.com/jquery.min.js"></script>
